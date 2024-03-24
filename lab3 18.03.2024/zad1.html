@@ -6,45 +6,60 @@
 </head>
 
 <style>
-    p {
-        color: red ;
-    }
-    ul {
-        background-color: blue ;
-    }
-    span {
-        color: green;
-    }
-    li {background-color: yellow}
 
-    .container h2{font-style: italic;}
+    .container h2 {
+        font-style: italic;
+    }
+
+    h1 + p {
+        color: red
+    }
+
+    div > ul {
+        background-color: blue
+    }
+
+    a + span {
+        color: green
+    }
+
+    div.container + h2 {
+        font-style: italic
+    }
+
+    h3.title + ul {
+        background-color: yellow
+    }
+    h3.title {
+        text-indent: 40px;
+    }
 </style>
 
 <body>
 <h1>Tytuł</h1>
-<p>Tekst</p>
-
+<p>tekst</p>
 <div>
-    <ul>
-        <li>Element 1</li>
-        <li>Element 2</li>
-    </ul>
-
- <a href="https://www.w3schools.com"> link </a>
-<span>
-    tekst
-</span>
-<p style="color: black">tekst</p>
-
-    <h2 class="container">Tytuł</h2>
-    <h2 class="title">Tytuł</h2>
     <ul>
         <li>Element 1</li>
         <li>Element 2</li>
         <li>Element 3</li>
         <li>Element 4</li>
     </ul>
-
 </div>
+<a href="https://www.w3schools.com/css/css_boxmodel.asp">Link</a>
+<span>
+    tekst
+</span>
+<div class="container">
+    <br>tekst
+</div>
+<h2>tytuł</h2>
+<h3 class="title">Tytuł</h3>
+<ul>
+    <li>Element 1</li>
+    <li>Element 2</li>
+    <li>Element 3</li>
+    <li>Element 4</li>
+</ul>
 </body>
 </html>
