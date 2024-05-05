@@ -3,8 +3,6 @@
 function sortArray($arr)
 {
     asort($arr);
-    print_r($arr);
-
     foreach ($arr as $coutry => $city) {
         echo "The capital of $coutry is $city \n";
     }
