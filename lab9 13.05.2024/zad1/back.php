@@ -10,10 +10,38 @@ if (isset($_GET['birthDate'])) {
 
     $day = getDayOfWeek($inputDate);
     $age = getAge($inputDate,$currentDate);
+    $days = getDaysUntilBday($inputDate,$currentDate);
 
-    header("Location: zad1.php?string=" . urlencode($age));
+    $query = http_build_query([
+        'dayOfWeek' => $day,
+        'age' => $age,
+        'daysUntilBday' => $days
+    ]);
+
+    header("Location: zad1.php?$query");
+    exit();
 }
+function getDaysUntilBday($inputDate, $currentDate)
+{
+    $r1 = (int) date("Y", strtotime($inputDate));
+    $m1 = (int) date("m", strtotime($inputDate));
+    $d1 = (int) date("d", strtotime($inputDate));
 
+    $r2 = (int) date("Y", strtotime($currentDate));
+    $m2 = (int) date("m",  strtotime($currentDate));
+    $d2 = (int) date("d",  strtotime($currentDate));
+
+    $time1 = mktime(0,0,0,$m1,$d1,$r2);
+    $time2 = mktime(0,0,0,$m2,$d2,$r2);
+
+    if (ceil(($time1 - $time2)/86400) >= 0)
+       return $time = (ceil(($time1 - $time2)/86400));
+    else
+        if (isLeapYear($r2))
+            return ceil(366 + ($time1 - $time2)/86400);
+        else
+            return ceil(365 + ($time1 - $time2)/86400);
+}
 function getAge($inputDate, $currentDate)
 {
     $r1 = (int) date("Y", strtotime($inputDate));
@@ -33,7 +61,7 @@ function getAge($inputDate, $currentDate)
             return $r2-$r1;
         else
             return $r2-$r1 - 1;
-    }
+    } //patologia
 }
 function getDayOfWeek($inputDate)
 {
@@ -54,6 +82,14 @@ function getDayOfWeek($inputDate)
             return "sobota";
         default:
             return "błąd";
+    }
+}
+function isLeapYear($year) {
+    if (($year % 4 == 0 && $year % 100 != 0)
+        || ($year % 400 == 0)) {
+        return true;
+    } else {
+        return false;
     }
 }
 

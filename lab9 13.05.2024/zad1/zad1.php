@@ -14,8 +14,20 @@
 </form>
 
 <?php
-if(isset($_GET['string'])) {
-    echo "Wynik: " . $_GET['string'];
+if(isset($_GET['age'])) {
+    echo "Twój wiek: " . $_GET['age'];
+}
+?>
+<br>
+<?php
+if(isset($_GET['dayOfWeek'])) {
+    echo "Dzień tygodnia w którym się urodziłeś: " . $_GET['dayOfWeek'];
+}
+?>
+<br>
+<?php
+if(isset($_GET['daysUntilBday'])) {
+    echo "Liczba dni do następnych urodzin: " . $_GET['daysUntilBday'];
 }
 ?>
 
