@@ -5,7 +5,7 @@
 
     <div>
         <label for="birthDate">Podaj datę urodzenia: </label>
-        <input type="date" id="birthDate" name="birthDate">
+        <input type="date" id="birthDate" name="birthDate" required>
     </div>
     <div>
         <input type="submit" value="wyślij">

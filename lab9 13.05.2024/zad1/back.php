@@ -61,7 +61,7 @@ function getAge($inputDate, $currentDate)
             return $r2-$r1;
         else
             return $r2-$r1 - 1;
-    } //patologia
+    }
 }
 function getDayOfWeek($inputDate)
 {

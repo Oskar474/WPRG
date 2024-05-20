@@ -1,26 +1,28 @@
 <?php
 
-//error_reporting(E_ALL ^ E_WARNING);
-fileManager("C:\Users\Oskar\Desktop\sda", "Hej", "delete");
+
+error_reporting(E_ALL ^ E_WARNING);
+fileManager($_POST['path'], $_POST['catalogName'], $_POST['operationType']);
 
 function fileManager($path, $name, $operationType = "read")
 {
+    $pathName = $path . $name;
     switch ($operationType) {
         case "read":
-            if (opendir($path)) {
-                echo "Lista plików w katalogu $path: <br/>";
-                foreach (scandir($path) as $file) {
+            if (opendir($pathName)) {
+                echo "Lista plików w katalogu $pathName : <br/>";
+                foreach (scandir($pathName) as $file) {
                     if ($file != '.' && $file != '..')
                         echo "$file<br/>";
                 }
             } else {
-                exit("Nie mogę otworzyć katalogu $path");
+                exit("Nie mogę otworzyć katalogu $pathName");
             }
             break;
 
         case "delete":
-            if (file_exists($path) && is_dir($path)) {
-                $files = scandir($path);
+            if (file_exists($pathName) && is_dir($pathName)) {
+                $files = scandir($pathName);
                 $fileCounter = 0;
                 foreach ($files as $file) {
                     if ($file != '.' && $file != '..') {
@@ -29,7 +31,7 @@ function fileManager($path, $name, $operationType = "read")
                 }
 
                 if ($fileCounter < 1) {
-                    rmdir($path);
+                    rmdir($pathName);
                     echo "Pomyślnie usunięto katalog";
                     break;
 
@@ -44,7 +46,10 @@ function fileManager($path, $name, $operationType = "read")
             break;
 
         case "create":
-            // You can add code here to create a directory if needed
+            if(mkdir($pathName))
+                echo "Pomyśnie utworzo katalog";
+            else
+                echo "Nie udało się utworzyć katalogu";
             break;
 
     }
